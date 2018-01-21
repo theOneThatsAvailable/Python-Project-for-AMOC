@@ -1,0 +1,17 @@
+import requests
+import json
+
+app_id = '***'      #Hidden for privacy purposes
+app_key = '***'     #Hidden for privacy purposes
+
+language = 'en'
+word_id = 'Change'
+
+url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/' + language + '/' + word_id.lower()
+
+r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
+
+lst = r.json()["results"][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions']
+
+for item in lst:
+    print("-" + item)
